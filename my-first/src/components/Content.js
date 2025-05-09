@@ -13,7 +13,7 @@ console.log(marks)
     }
 
     return (
-        <div style={{ padding: '20px', flex: 1, margin: 'auto' }}>
+        <div style={{flexGrow:1, padding: '20px', margin: 'auto',overflow:"auto" }}>
             <div style={{ display: "flex", gap: "10px" }}>
                 <p><strong>First Name:</strong> {props.firstName}</p>
                 <p><strong>Roll Number:</strong> {props.rollNumber}</p>
