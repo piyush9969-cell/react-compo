@@ -1,2 +1,2 @@
 # react-compo
-Assignment 1
+Assignments for React Training
