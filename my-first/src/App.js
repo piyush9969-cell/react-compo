@@ -15,10 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element = {<Content rollNumber={23} firstName={"Piyush"} />} />
        
-        <Route path="student" element={<StudentGallery/>}/>
-
-        <Route path="student/:studentId" element={<Student/>}/>
-
+        <Route path="student" element={<StudentGallery/>}>
+            <Route path=":studentId" element={<Student/>}/>
+        </Route>
         <Route path="/contact" element={<Contact/>} />
       
      
