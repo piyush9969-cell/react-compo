@@ -1,14 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import students from "../data/students.json";
+
+
+import {increaseMarks, decreaseMarks} from "../store/action/action"
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { set } from 'react-hook-form';
 
 
 const Student = () => {
     const [upadatedStudent, setUpdatedStudent] = useState({});
+    const students = useSelector((state) => state.students);
+    const dispatch = useDispatch();
+
    
  const {studentId} = useParams();
  
+ useEffect(() => {
+    const student = students.find((s) => s.id.toString() === studentId);
+
+    if (!student) {
+        console.error("Student not found for ID:", studentId);
+        return;
+    }else{
+    setUpdatedStudent(student);
+    }
+   
+
+    setUpdatedStudent(student);
+ }, [students]);
 useEffect(() => {
     const fetchQuote = async () => {
         try {
@@ -35,6 +55,22 @@ useEffect(() => {
     fetchQuote();
 }, [studentId]);
 
+const handleIncreaseMarks = () => {
+    try{
+        dispatch(increaseMarks(upadatedStudent.id));
+    }catch (error) {
+        alert(error.message);
+    }
+}
+
+const handleDecreaseMarks = () => {
+    try{
+        dispatch(decreaseMarks(upadatedStudent.id));
+    }catch (error) {
+        alert(error.message);
+    }
+}
+
 
 return (
     <div style={{display:"flex",justifyContent:"space-between"}}>
@@ -51,6 +87,16 @@ return (
                
                 <p><strong>Roll:</strong> {upadatedStudent.rollNo}</p>
                 <p><strong>Marks:</strong> {upadatedStudent.marks}</p>
+                              <div style={{ display: "flex", gap: "10px", marginTop: "8px", alignItems: "center" }}>
+                    <button
+                        onClick={handleDecreaseMarks}
+                        style={{   padding: '5px 10px', backgroundColor: '#020202', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                    >-</button>
+                    <button
+                        onClick={handleIncreaseMarks}
+                         style={{   padding: '5px 10px', backgroundColor: '#020202', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                    >+</button>
+                </div>
             </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", margin: "auto", overflow: "auto",padding: "10px",
