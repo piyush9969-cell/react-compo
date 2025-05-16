@@ -5,12 +5,11 @@ import { useParams } from 'react-router-dom';
 import {increaseMarks, decreaseMarks} from "../store/action/action"
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { set } from 'react-hook-form';
 
 
 const Student = () => {
     const [upadatedStudent, setUpdatedStudent] = useState({});
-    const students = useSelector((state) => state.students);
+    const students = useSelector((state) => state.studentReducer.students);
     const dispatch = useDispatch();
 
    

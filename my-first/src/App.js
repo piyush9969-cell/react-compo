@@ -13,7 +13,7 @@ function App() {
     <div style={{height:"100vh", display:"flex",flexDirection:'column'}}>
       <Header/>
       <Routes>
-        <Route path="/" element = {<Content rollNumber={23} firstName={"Piyush"} />} />
+        <Route path="/" element = {<Content rollNumber={49} firstName={"Piyush"} />} />
        
         <Route path="student" element={<StudentGallery/>}>
             <Route path=":studentId" element={<Student/>}/>
